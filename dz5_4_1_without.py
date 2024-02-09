@@ -22,13 +22,21 @@ def input_error(func):
             if function_name == "show_phone":
                 return f"Неправильно введена команда.\
                     \nПотрібно ввести phone name"
-                    
-        # except KeyError:
+        
+       
+       
+        # ''' не можу розібратися з цим куском коду  '''
+        
+        # except KeyError:                                   
         #     # виводить помилку, якщо немає такого контакту
         #     if function_name == "show_phone":
         #         return f"Контакту не існує. Add it please.\n"
-            
+        
+    #    ''' не можу розібратися з цим куском коду  '''  
     return inner
+
+
+
 
 # функція взаємодії з користувачем
 def parse_input(user_input):
