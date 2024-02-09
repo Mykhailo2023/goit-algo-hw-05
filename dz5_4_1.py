@@ -1,5 +1,5 @@
 
-
+import os
 from colorama import Fore, Back
 
 
@@ -23,10 +23,10 @@ def input_error(func):
                 return f"{Fore.YELLOW}Неправильно введена команда.\
                     \nПотрібно ввести {Fore.LIGHTGREEN_EX}phone name{Fore.RESET}\n"
                     
-        except KeyError: # може тут має бути інша помилка
-            # виводить помилку, якщо немає такого контакту
-            if function_name == "show_phone":
-                return f"Контакту не існує. Add it please.\n"
+        # except KeyError:
+        #     # виводить помилку, якщо немає такого контакту
+        #     if function_name == "show_phone":
+        #         return f"Контакту не існує. Add it please.\n"
             
     return inner
 
@@ -46,13 +46,10 @@ def name_out (name:str):
 def add_contact(args, contacts):
     name, phone = args
     if phone.isdigit():
-        # перевіряємо чи вже існує такий номер
-        if phone in contacts.values():
-            return f"{Fore.RED}Цей номер вже присутній у контактах.{Fore.RESET}"
-        # перевіряємо чи вже існує таке ім'я
-        elif name in contacts.keys():               
-            return f"{Fore.RED}Контакт {name_out(name)} вже існує.{Fore.RESET}"
-        # якщо все правильно додаємо контакт
+        # перевіряємо чи вже існує такий номер або імя
+        if phone in contacts.values() or name in contacts.keys():
+                        
+            return f"{Fore.RED}Цей номер або ім'я вже присутній у контактах.{Fore.RESET}"
         else:
             contacts[name] = phone
             return f"{Fore.GREEN}Контакт{Fore.RESET} {name_out(name)} {Fore.GREEN}додано.{Fore.RESET}"
@@ -94,7 +91,8 @@ def show_phone(args, contacts):
     name=args[0]
     if name in contacts:
         return f"{Fore.GREEN}Телефон контакту{Fore.RESET} {name_out(name)} {Fore.GREEN}є{Fore.RESET} {Fore.LIGHTBLUE_EX}{contacts[name]}{Fore.RESET}"
-   
+    else:
+        return f"{Fore.RED}Контакту не існує.{Fore.GREEN} Додайте його.{Fore.RESET}"
     
 # головна функція
 def main():
