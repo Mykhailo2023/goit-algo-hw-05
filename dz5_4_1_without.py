@@ -27,10 +27,10 @@ def input_error(func):
        
         # ''' не можу розібратися з цим куском коду  '''
         
-        # except KeyError:                                   
-        #     # виводить помилку, якщо немає такого контакту
-        #     if function_name == "show_phone":
-        #         return f"Контакту не існує. Add it please.\n"
+        except KeyError:                                   
+            # виводить помилку, якщо немає такого контакту
+            if function_name == "show_phone":
+                return f"Контакту не існує. Add it please.\n"
         
     #    ''' не можу розібратися з цим куском коду  '''  
     return inner
@@ -117,8 +117,8 @@ def show_phone(args, contacts):
     name=args[0]
     if name in contacts:
         return f"Телефон контакту {name_out(name)} є {contacts[name]}"
-    else:
-        return "Контакту не існує. Додайте його."
+    # else:
+    #     return "Контакту не існує. Додайте його."
     
 # головна функція
 def main():
